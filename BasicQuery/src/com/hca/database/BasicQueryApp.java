@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class BasicQueryApp {
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException  {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
 		// Load the mysql JDBC driver
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -18,6 +18,17 @@ public class BasicQueryApp {
 		// get the username and password from the command line args
 		String username = args[0];
 		String password = args[1];
+		
+	try {
+			if (password == "password") {
+				throw new Exception();  // go to catch handler
+			}	
+			System.out.println("Your password is okay");
+	}
+	catch(Exception e) {
+		System.out.println("Your password is not very good");
+	}
+
 		
 		
 		// display username and password for proof of concept ONLY
