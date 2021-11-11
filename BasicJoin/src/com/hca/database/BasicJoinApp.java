@@ -19,6 +19,7 @@ public class BasicJoinApp {
 		String password = args[1];
 
 		try {
+			// load the mysql driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 			System.out.println("You didn't get the MySQL driver loaded!");
@@ -27,10 +28,12 @@ public class BasicJoinApp {
 		}
 		
 
-
+		// move the scope of the connection object up here so that we can use the
+		// same connection across two queries below
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/northwind", username,
 				password);) {
 
+			// QUERY 1 - get employees
 			try (PreparedStatement statement = connection
 					.prepareStatement("SELECT employeeid, firstname FROM employees ORDER BY firstname");
 					ResultSet results = statement.executeQuery();) {
@@ -42,6 +45,7 @@ public class BasicJoinApp {
 				}
 			}
 
+			// ask which employee you want to see the orders for
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("Enter the name of the employee you want to see the orders for? ");
 			String name = scanner.nextLine();
@@ -60,6 +64,7 @@ public class BasicJoinApp {
 //			             "JOIN employees ON employees.employeeid = orders.employeeid " +
 //					     "WHERE firstname = ? ORDER BY orderid";
 
+			// QUERY 2 - Get the orders for a specific employee
 			try (PreparedStatement statement = connection.prepareStatement(sql.toString());) {
 				statement.setString(1, name.trim());
 
