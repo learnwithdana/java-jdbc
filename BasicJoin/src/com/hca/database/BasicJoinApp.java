@@ -37,6 +37,7 @@ public class BasicJoinApp {
 			while(results.next()) {
 				System.out.printf("Name = %s  Id = %d\n", results.getString(2), results.getInt(1));
 			}
+			
 		}
 //		catch(ClassNotFoundException e) {
 //			System.out.println("You didn't get the MySQL driver loaded!");
