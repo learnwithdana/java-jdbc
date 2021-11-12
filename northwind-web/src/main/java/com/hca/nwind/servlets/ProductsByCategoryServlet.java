@@ -2,6 +2,7 @@ package com.hca.nwind.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,8 +53,17 @@ public class ProductsByCategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		Map<String, String[]> parameterMap = request.getParameterMap();
+		int categoryId =  Integer.parseInt(parameterMap.get("category")[0]);
+		
+		NwindDataManager dataManager = new NwindDataManager();
+		List<Product> list = dataManager.getProductsByCategory(categoryId);
+		
+		request.setAttribute("products", list);
+		request.setAttribute("selectedCategory", categoryId);
+		
+		doGet(request, response);		
 	}
 
 }
