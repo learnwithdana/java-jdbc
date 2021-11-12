@@ -3,12 +3,16 @@ package com.hca.nwind.servlets;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.RequestDispatcher;
+//import javax.servlet.ServletException;
+//import javax.servlet.annotation.WebServlet;
+//import javax.servlet.http.HttpServlet;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
 import com.hca.nwind.datalayer.NwindDataManager;
 import com.hca.nwind.models.Product;
@@ -46,7 +50,8 @@ public class AllProductsServlet extends HttpServlet {
 		// forward the request to the JSP so that it can produce the HTML markup
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/products.jsp");
 		dispatcher.forward(request, response);
-		
 	}
+	
+	
 
 }

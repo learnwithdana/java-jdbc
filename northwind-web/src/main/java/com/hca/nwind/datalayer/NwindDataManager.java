@@ -21,7 +21,6 @@ public class NwindDataManager {
 		dataSource.setPort(3306);
 		dataSource.setDatabaseName("northwind");
 		dataSource.setUser("root");
-		;
 		dataSource.setPassword("password");
 	}
 
@@ -34,6 +33,7 @@ public class NwindDataManager {
 						"SELECT * FROM Products ORDER BY ProductName");
 				ResultSet results = stmtProducts.executeQuery();
 		) {
+			
 			while (results.next()) {
 				Product product = new Product(results.getInt("ProductId"), results.getString("ProductName"),
 						results.getDouble("UnitPrice"), results.getInt("UnitsInStock"), null);
